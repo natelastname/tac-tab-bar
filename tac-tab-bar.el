@@ -81,8 +81,7 @@
   (let ((win1 (tactabbar-upper-left-window)))
     (if (window-live-p win1)
         (select-window win1 t))
-    (tactabbar-proj-or-major-mode)
-    ))
+    (tactabbar-proj-or-major-mode)))
 
 (defun tactabbar-dired-new-tab ()
   "Open Dired in the home directory."

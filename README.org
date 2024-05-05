@@ -1,0 +1,37 @@
+# -*- mode: org -*-
+#+TITLE: tac-tab-bar
+#+AUTHOR: nate
+#+DATE: <2024-05-04>
+
+=tac-tab-bar= (read: "Tactics for Tab Bar Mode") is an Emacs package that implements an opinionated approach for naming tabs in =tab-bar-mode=
+
+* Principal of Operation
+
+=tac-tab-bar= is based on the principal that the window in the upper-left hand corner of a tab is considered to be the tab's "Main Window". The name of the tab is a function of the upper-left window only.
+
+#+begin_example
+- IF [the upper-left window is editing a file F] AND [F is in a projectile project P]
+- THEN
+  - [use the `projectile-project-name` of P.]
+- ELSE
+  - [Use the major mode of the upper-left window]
+#+end_example
+
+In practical terms, this means that each =tab-bar-mode= tab is associated with the projectile project of the upper-left window. If this is not possible because the upper left window doesn't have a projectile project, fall back on the major mode of the upper left window.
+
+* Suggested configuration
+
+#+begin_src emacs-lisp
+  (use-package tac-tab-bar)
+
+  (use-package tab-bar
+    :after tac-tab-bar
+    :custom
+    (tab-bar-new-tab-to 'rightmost)
+    (tab-bar-tab-name-function #'tactabbar-tab-name-consistent)
+    (tab-bar-new-tab-choice #'tactabbar-dired-new-tab)
+    ;; Show tab numbers
+    (tab-bar-tab-hints t)
+    :config
+    (tab-bar-mode 1))
+#+end_src
