@@ -7,7 +7,7 @@
 
 * Principal of Operation
 
-=tac-tab-bar= is based on the principal that the window in the upper-left hand corner of a tab is considered to be the tab's "Main Window". The name of the tab is a function of the upper-left window only.
+=tac-tab-bar= is based on the principal that the window in the upper-left hand corner of a tab is considered to be the tab's "Main Window". The name of the tab is a function of the upper-left window only. The logic for generating tab names is as follows:
 
 #+begin_example
 - IF [the upper-left window is editing a file F] AND [F is in a projectile project P]
